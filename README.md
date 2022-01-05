@@ -2,9 +2,9 @@
 # AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
 
 <br> **Description**: A manually curated arsenic functional gene
-database (AsgeneDB) was developed for rapid and accurate metagenomic
-analysis.<br> <br> **Authors**: Xinwei Song, Yongguan Zhu, Yongming Luo,
-Bin Ma\*, Jianming Xu <br>
+database (AsgeneDB) and R package (Asgen package) are developed for
+rapid and accurate metagenomic analysis.<br> <br> **Authors**: Xinwei
+Song, Yongguan Zhu, Yongming Luo, Bin Ma\*, Jianming Xu <br>
 
 ## Overview
 
@@ -22,7 +22,7 @@ metabolism and transformation function of microbial communities by
 integrating multiple lineal homology databases with high specificity,
 comprehensiveness, representativeness and accuracy.
 
-## Documentation
+## Documentation (AsgeneDB)
 
 ### Database files
 
@@ -71,7 +71,7 @@ used for “BLAST” searching arsenic genes in shotgun metagenomes.
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Installation
+## Installation (Asgene Package)
 
 You can install the development version of Asgene from
 [GitHub](https://github.com/) with:
@@ -83,19 +83,19 @@ devtools::install_github("XinweiSong/Asgene")
 
 ## Usage
 
-**Description**:<br> we provide a fully automated R script(AsgeneDB.R)
-from metagenomic alignment, subsequent gene family abundance statistics
-and sample abundance standardization. Users only need to choose a
-database search tool according to their needs (e.g. USEARCH BLAST
-DIAMOND) and input three parameters (working path, sequence type and
-extension of sequence file) to automatically analyze statistics and
-output statistical results. Users can select gene abundance statistics
-(Option: -a abundance) to normalize read counts per kilobase per million
-reads (RPKM) to eliminate differences in sequencing depth and reference
+**Description**:<br> we provide Asgene Package for metagenomic
+alignment, subsequent gene family abundance statistics and sample
+abundance standardization. Users only need to choose a database search
+tool according to their needs (e.g., USEARCH BLAST DIAMOND) and input
+three parameters (working path, tool path, sequence type and extension
+of sequence file) to automatically analyze statistics and output
+statistical results. Users can select gene abundance statistics (Option:
+abundance) to normalize read counts per kilobase per million reads
+(RPKM) to eliminate differences in sequencing depth and reference
 sequence length between samples. In addition, if the user selects
-functional species statistics (Option: -a taxonomy), the driveing
-species of each arsenic metabolism gene at different classification
-levels in the sample can be generated automatically.
+functional species statistics (Option: taxonomy), the driveing species
+of each arsenic metabolism gene at different classification levels in
+the sample can be generated automatically.
 
 ## Example
 
