@@ -22,7 +22,7 @@ metabolism and transformation function of microbial communities by
 integrating multiple lineal homology databases with high specificity,
 comprehensiveness, representativeness and accuracy.
 
-## Documentation (AsgeneDB)
+## AsgeneDB Documentation
 
 ### Database files
 
@@ -71,7 +71,9 @@ used for “BLAST” searching arsenic genes in shotgun metagenomes.
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Installation (Asgene Package)
+## Asgene Package
+
+### Installation
 
 You can install the development version of Asgene from
 [GitHub](https://github.com/) with:
@@ -81,7 +83,7 @@ You can install the development version of Asgene from
 devtools::install_github("XinweiSong/Asgene")
 ```
 
-## Usage
+### Usage
 
 **Description**:<br> we provide Asgene Package for metagenomic
 alignment, subsequent gene family abundance statistics and sample
@@ -97,7 +99,7 @@ functional species statistics (Option: taxonomy), the driveing species
 of each arsenic metabolism gene at different classification levels in
 the sample can be generated automatically.
 
-## Example
+### Example
 
 This is a basic example which shows you how to use the package:
 
