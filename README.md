@@ -1,12 +1,75 @@
 
+# AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
+
+<br> **Description**: A manually curated arsenic functional gene
+database (AsgeneDB) was developed for rapid and accurate metagenomic
+analysis.<br> <br> **Authors**: Xinwei Song, Yongguan Zhu, Yongming Luo,
+Bin Ma\*, Jianming Xu <br>
+
+## Overview
+
+Arsenic (As) is a kind of toxic metal-like element widely distributed in
+the world. To understand the microbial community of arsenic metabolism
+in the environment, we developed a curated arsenic functional gene
+database (AsgeneDB) covering five arsenic metabolic pathways (transport,
+respiratory, reduction, oxidative and methylation processes), 59 arsenic
+biotransformation functional gene families and 414773 representative
+sequences. Here, protein sequences for As gene families were recruited
+from multiple public databases such as UniProt, NCBI RefSeq, KEGG, COG,
+eggNOG, arCOG and KOG. AsgeneDB covers 46 phyla and 1653 genera of
+bacterial, archaea and fungi. It can quickly analyze the arsenic
+metabolism and transformation function of microbial communities by
+integrating multiple lineal homology databases with high specificity,
+comprehensiveness, representativeness and accuracy.
+
+## Documentation
+
+### Database files
+
+**Database files can be downloaded from
+<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB>**
+
+Four files are included in
+AsgeneDB.zip(<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>):
+1. **AsgeneDB.fa**: Fasta format representative sequences obtained by
+clustering curated sequences at 100% sequence identity. This file can be
+used for “BLAST” searching arsenic genes in shotgun metagenomes.
+
+2.  **asgene.map**: A mapping file that maps sequence IDs to gene names,
+    only sequences belonging to arsenic gene families are included. This
+    file is used to generate arsenic gene profiles from BLAST-like
+    results against the database.
+
+3.  **id\_gene\_tax\_pathway\_total.csv**: Species table of sequences in
+    AsgeneDB. <br>
+
+    **Columns included:**<br>
+
+    1.  Gene name (colnames:gene) <br>
+    2.  Corresponding arsenic metabolic pathway (colnames:pathway) <br>
+    3.  Taxid (colnames:taxid) <br>
+    4.  Protein ID (colnames:protein\_id) <br>
+    5.  Kindom classification of species (colnames:kindom) <br>
+    6.  Phylum classification of species (colnames:phylum) <br>
+    7.  Class classification of species (colnames:class) <br>  
+    8.  Order classification of species (colnames:order) <br>
+    9.  Family classification of species (colnames:family) <br>
+    10. Genus classification of species (colnames:genus) <br>
+    11. Species classification of species (colnames:species) <br>
+
+4.  **length.txt**: The file contains the length of amino acid sequences
+    in AsgeneDB for standardizing arsenic gene abundance statistics.
+
+## Dependent Tools
+
+1.  **R Studio**
+2.  **database searching tools:**<br>
+
+-   usearch: <https://www.drive5.com/usearch/download.html>
+-   diamond: <https://github.com/bbuchfink/diamond/releases>
+-   blast: <https://ftp.ncbi.nlm.nih.gov/blast/executables/>
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# Asgene
-
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of Asgene is to …
 
 ## Installation
 
@@ -18,38 +81,30 @@ You can install the development version of Asgene from
 devtools::install_github("XinweiSong/Asgene")
 ```
 
+## Usage
+
+**Description**:<br> we provide a fully automated R script(AsgeneDB.R)
+from metagenomic alignment, subsequent gene family abundance statistics
+and sample abundance standardization. Users only need to choose a
+database search tool according to their needs (e.g. USEARCH BLAST
+DIAMOND) and input three parameters (working path, sequence type and
+extension of sequence file) to automatically analyze statistics and
+output statistical results. Users can select gene abundance statistics
+(Option: -a abundance) to normalize read counts per kilobase per million
+reads (RPKM) to eliminate differences in sequencing depth and reference
+sequence length between samples. In addition, if the user selects
+functional species statistics (Option: -a taxonomy), the driveing
+species of each arsenic metabolism gene at different classification
+levels in the sample can be generated automatically.
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to use the package:
 
 ``` r
 library(Asgene)
-## basic example code
+#Arsenic metabolism gene abundance analysis**
+Asgene("abundance","./","diamond","./","nucl","fasta","./")
+#Arsenic metabolism taxonomy analysis**
+Asgene("taxonomy","./","diamond","./","nucl","fasta","./")
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.

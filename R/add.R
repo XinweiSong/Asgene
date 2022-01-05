@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' library(rPackageTutorial)
+#' library(Asgene)
 #' Asgene("abundance","./","diamond","./","nucl","fasta","./")
 #' Asgene("taxonomy","./","diamond","./","nucl","fasta","./")
 Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",seqtype="fasta",filetype="nucl",out="./"){
@@ -173,4 +173,4 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
   }
 }
-document()
+
