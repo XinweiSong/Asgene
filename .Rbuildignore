@@ -1,2 +1,5 @@
+^renv$
+^renv\.lock$
 ^Asgene\.Rproj$
 ^\.Rproj\.user$
+^README\.Rmd$
