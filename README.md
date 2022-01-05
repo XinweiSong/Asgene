@@ -103,8 +103,8 @@ This is a basic example which shows you how to use the package:
 
 ``` r
 library(Asgene)
-#Arsenic metabolism gene abundance analysis**
+#Arsenic metabolism gene abundance analysis
 Asgene("abundance","./","diamond","./","nucl","fasta","./")
-#Arsenic metabolism taxonomy analysis**
+#Arsenic metabolism taxonomy analysis
 Asgene("taxonomy","./","diamond","./","nucl","fasta","./")
 ```
