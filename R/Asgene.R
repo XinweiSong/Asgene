@@ -6,6 +6,7 @@
 #' @param workdir Specify directory for sequence file location;type = "character"; default = "./"
 #' @param method Specify the database searching tool you plan to use, currently diamond, usearch and blast are supported; type = "character"; default = "diamond"
 #' @param toolpath Specify directory for searching tool location; type = "character"; default = "./"
+#' @param search_parameters Define metagenomic comparison parameters; type = "character"; default = "-e 1e-4 -p 28 --query-cover 80 --id 50"
 #' @param seqtype Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"
 #' @param filetype Specify your sequence type, nucl or prot; type = "character"; default = "nucl"
 #' @param out Specify the directory for the final result file; type = "character"; default = "./"
@@ -15,15 +16,13 @@
 #'
 #' @examples
 #' library(Asgene)
-#' Asgene("abundance","./","diamond","./","nucl","fasta","./")
-#' Asgene("taxonomy","./","diamond","./","nucl","fasta","./")
-Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",search_parameters = "-e 1e-10 -p 28 --query-cover 80 --id 50",seqtype="fasta",filetype="nucl",out="./"){
+#' Asgene("abundance","./","diamond","./","-e 1e-4 -p 28 --query-cover 80 --id 50","nucl","fasta","./")
+#' Asgene("taxonomy","./","diamond","./","-e 1e-4 -p 28 --query-cover 80 --id 50","nucl","fasta","./")
+Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype="fasta",filetype="nucl",out="./"){
   #Install dependent packages
   if (!requireNamespace("dplyr", quietly = TRUE))
     install.packages("dplyr")
   library("dplyr")
-  #user-define metagenomic comparison parameters
-  search_parameters <- "-e 1e-4 -p 28 --query-cover 80 --id 50 "
   system("mkdir sample_file")
 
   #Call comparison tool
@@ -171,4 +170,3 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
   }
 }
-

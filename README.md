@@ -106,9 +106,9 @@ This is a basic example which shows you how to use the package:
 ``` r
 library(Asgene)
 #Arsenic metabolism gene abundance analysis
-Asgene("abundance","./","diamond","./","nucl","fasta","./")
+Asgene("abundance","./","diamond","./","-e 1e-4 -p 28 --query-cover 80 --id 50","nucl","fasta","./")
 #Arsenic metabolism taxonomy analysis
-Asgene("taxonomy","./","diamond","./","nucl","fasta","./")
+Asgene("taxonomy","./","diamond","./","-e 1e-4 -p 28 --query-cover 80 --id 50","nucl","fasta","./")
 ```
 
 #### **NOTE:**
