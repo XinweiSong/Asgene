@@ -17,15 +17,13 @@
 #' library(Asgene)
 #' Asgene("abundance","./","diamond","./","nucl","fasta","./")
 #' Asgene("taxonomy","./","diamond","./","nucl","fasta","./")
-Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",seqtype="fasta",filetype="nucl",out="./"){
+Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",search_parameters = "-e 1e-10 -p 28 --query-cover 80 --id 50",seqtype="fasta",filetype="nucl",out="./"){
   #Install dependent packages
   if (!requireNamespace("dplyr", quietly = TRUE))
     install.packages("dplyr")
   library("dplyr")
   #user-define metagenomic comparison parameters
-  diamond_parameters <- "-e 1e-10 -p 28 --query-cover 80 --id 50 "
-  usearch_parameters <- "-id 0.5"
-  blast_parameters <- "-evalue 1e-10"
+  search_parameters <- "-e 1e-4 -p 28 --query-cover 80 --id 50 "
   system("mkdir sample_file")
 
   #Call comparison tool
@@ -37,9 +35,9 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       out <- gsub(filetype,"diamond",file);
       out <- paste("./sample_file/",out,sep = "");
       if (seqtype == "nucl") {
-        system(paste(toolpath,"diamond blastx ",diamond_parameters," -d ./total_100%.dmnd -q ",file_1," -o ",out,sep = ""))}
+        system(paste(toolpath,"diamond blastx ",search_parameters," -d ./AsgeneDB.dmnd -q ",file_1," -o ",out,sep = ""))}
       if (seqtype == "prot"){
-        system(paste(toolpath,"diamond blastp ",diamond_parameters," -d ./total_100%.dmnd -q ",file_1," -o ",out,sep = ""))}
+        system(paste(toolpath,"diamond blastp ",search_parameters," -d ./AsgeneDB.dmnd -q ",file_1," -o ",out,sep = ""))}
     }
   }
 
@@ -53,7 +51,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       file_1 <- paste(workdir,i,sep="");
       out <- gsub(filetype,"usearch",file);
       out <- paste("./sample_file/",out,sep = "");
-      system(paste(toolpath,"usearch11 -usearch_global",file_1,"-db ./total_100%",usearch_parameters,"-blast6out",out,sep = " "))}
+      system(paste(toolpath,"usearch -usearch_global ",file_1," -db ./AsgeneDB.fa ",search_parameters," -blast6out ",out,sep = ""))}
   }
 
   if ( method == "blast" ) {
@@ -68,9 +66,9 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       out <- gsub(filetype,"blast",file);
       out <- paste("./sample_file/",out,sep = "");
       if (seqtype == "nucl") {
-        system(paste(toolpath,"blastx -db ./total_100%",blast_parameters,"-query",file_1,"-out",out,sep = " "))}
+        system(paste(toolpath,"blastx -db ./AsgeneDB.fa ",search_parameters," -query ",file_1," -out ",out,sep = ""))}
       if (seqtype == "prot"){
-        system(paste(toolpath,"blastp -db ./total_100%",blast_parameters,"-query",file_1,"-oout",out,sep = " "))}}
+        system(paste(toolpath,"blastp -db ./AsgeneDB.fa ",search_parameters," -query ",file_1," -oout ",out,sep = ""))}}
   }
 
   #Merge metagenomic PE files (take union)
