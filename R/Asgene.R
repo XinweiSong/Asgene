@@ -1,4 +1,3 @@
-#' Title
 #' AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
 #' Description
 #' A manually curated arsenic functional gene database/tool (AsgeneDB) was developed for rapid and accurate metagenomic analysis.
