@@ -15,8 +15,7 @@
 #'
 #' @examples
 #' library(Asgene)
-#' Asgene("abundance","./","diamond","./","-e 1e-4 -p 28 --query-cover 80 --id 50","nucl","fasta","./")
-#' Asgene("taxonomy","./","diamond","./","-e 1e-4 -p 28 --query-cover 80 --id 50","nucl","fasta","./")
+#' Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", out = "./")
 Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype="fasta",filetype="nucl",out="./"){
   #Install dependent packages
   if (!requireNamespace("dplyr", quietly = TRUE))
