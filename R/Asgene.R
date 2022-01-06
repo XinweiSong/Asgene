@@ -58,15 +58,15 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       q();
     }
     file <- list.files(path=workdir, pattern= filetype);
-    system(toolpath,"makeblastdb -dbtype prot -input_type fasta -in ./total_100% -out ./total_100%");
+    system(toolpath,"makeblastdb -dbtype prot -input_type fasta -in ./AsgeneDB.fa -out ./AsgeneDB");
     for (i in file) {
       file_1 <- paste(workdir,i,sep="");
       out <- gsub(filetype,"blast",file);
       out <- paste("./sample_file/",out,sep = "");
       if (seqtype == "nucl") {
-        system(paste(toolpath,"blastx -db ./AsgeneDB.fa ",search_parameters," -query ",file_1," -out ",out,sep = ""))}
+        system(paste(toolpath,"blastx -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}
       if (seqtype == "prot"){
-        system(paste(toolpath,"blastp -db ./AsgeneDB.fa ",search_parameters," -query ",file_1," -oout ",out,sep = ""))}}
+        system(paste(toolpath,"blastp -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}}
   }
 
   #Merge metagenomic PE files (take union)
