@@ -166,7 +166,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     }}
     a <- list.files(path="./gene_tax/",pattern = ".csv")
     n <- length(a)
-    merge.data <- read.csv(file = paste("./gene_tax/",a[1],sep = ""),header=T,ssep=",")
+    merge.data <- read.csv(file = paste("./gene_tax/",a[1],sep = ""),header=T,sep=",")
     merge.data1 <- data.frame(merge.data)
     for (i in 2:n){
       new.data =read.csv(file=paste("./gene_tax/",a[i],sep = ""),sep = ",",header =T)
