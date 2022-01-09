@@ -21,10 +21,9 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
   if (!requireNamespace("dplyr", quietly = TRUE))
     install.packages("dplyr")
   library("dplyr")
-  system("mkdir sample_file")
-
   #Call comparison tool
   if ( method == "diamond" ) {
+    system("mkdir sample_file");
     system(paste(toolpath,"diamond makedb --in ./AsgeneDB.fa --db ./AsgeneDB",sep = ""));
     file <- list.files(path=workdir, pattern=filetype);
     for (i in file) {
@@ -35,28 +34,34 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
         system(paste(toolpath,"diamond blastx ",search_parameters," -d ./AsgeneDB.dmnd -q ",file_1," -o ",out,sep = ""))}
       if (seqtype == "prot"){
         system(paste(toolpath,"diamond blastp ",search_parameters," -d ./AsgeneDB.dmnd -q ",file_1," -o ",out,sep = ""))}
+      else{
+        stop()
+      }
     }
   }
 
-  if ( method == "usearch") {
-    if ( grepl("gz",filetype) == "TRUE" ) {
-      print("Only fastq and fasta files are supported by usearch!\n");
-      q();
+  else if ( method == "usearch") {
+    if ( grepl("gz",filetype) ) {
+      stop("Only fastq and fasta files are supported by usearch!")
     }
-    file <- list.files(path=workdir, pattern= filetype);
+    else{
+      system("mkdir sample_file");
+      file <- list.files(path=workdir, pattern= filetype);
     for (i in file) {
       file_1 <- paste(workdir,i,sep="");
       out <- gsub(filetype,"usearch",file);
       out <- paste("./sample_file/",out,sep = "");
       system(paste(toolpath,"usearch -usearch_global ",file_1," -db ./AsgeneDB.fa ",search_parameters," -blast6out ",out,sep = ""))}
+    }
   }
 
-  if ( method == "blast" ) {
-    if ( grepl("gz|fastq|fq",filetype,perl = TRUE) == "TRUE" ) {
-      print("Only fasta files are supported by blast program!");
-      q();
+  else if ( method == "blast" ) {
+    if ( grepl("gz|fastq|fq",filetype,perl = TRUE)) {
+      stop("Only fasta files are supported by blast program!")
     }
-    file <- list.files(path=workdir, pattern= filetype);
+    else{
+      system("mkdir sample_file");
+      file <- list.files(path=workdir, pattern= filetype);
     system(toolpath,"makeblastdb -dbtype prot -input_type fasta -in ./AsgeneDB.fa -out ./AsgeneDB");
     for (i in file) {
       file_1 <- paste(workdir,i,sep="");
@@ -65,13 +70,16 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       if (seqtype == "nucl") {
         system(paste(toolpath,"blastx -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}
       if (seqtype == "prot"){
-        system(paste(toolpath,"blastp -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}}
+        system(paste(toolpath,"blastp -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}}}
+  }
+  else {
+    stop("Specify the database searching tool you plan to use!")
   }
 
   #Merge metagenomic PE files (take union)
   list <-read.table("./sampleinfo.txt",sep = "\t",header =F)
-  system("mkdir sample_merge")
   for (i in list[,1]){
+    system("mkdir sample_merge");
     a <- read.table(file=paste("./sample_file/",i,"_R1.",method,sep=""),sep = "\t")
     a1 <- data.frame(a)
     b <- read.table(file=paste("./sample_file/",i,"_R2.",method,sep=""),sep = "\t")
@@ -155,8 +163,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       id_gene_tax_pathway <- read.csv("./id_gene_tax_pathway_total.csv",sep=",",header = T)
       sample_gene_tax_pathway <- merge(a1,id_gene_tax_pathway,by="protein_id" )
       write.table(sample_gene_tax_pathway, file = paste("./gene_tax/",i,".csv",sep = ""),sep=",",quote = FALSE,row.names = FALSE)
-    }
-
+    }}
     a <- list.files(path="./gene_tax/",pattern = ".csv")
     n <- length(a)
     merge.data <- read.csv(file = paste("./gene_tax/",a[1],sep = ""),header=T,ssep=",")
@@ -167,4 +174,3 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     }
     write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
   }
-}
