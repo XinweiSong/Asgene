@@ -6,8 +6,8 @@
 #' @param method Specify the database searching tool you plan to use, currently diamond, usearch and blast are supported; type = "character"; default = "diamond"
 #' @param toolpath Specify directory for searching tool location; type = "character"; default = "./"
 #' @param search_parameters Define metagenomic comparison parameters; type = "character"; default = "-e 1e-4 -p 28 --query-cover 80 --id 50"
-#' @param seqtype Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"
-#' @param filetype Specify your sequence type, nucl or prot; type = "character"; default = "nucl"
+#' @param seqtype Specify your sequence type, nucl or prot; type = "character"; default = "nucl"
+#' @param filetype Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"
 #' @param out Specify the directory for the final result file; type = "character"; default = "./"
 #'
 #' @return
