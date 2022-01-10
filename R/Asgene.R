@@ -16,7 +16,7 @@
 #' @examples
 #' library(Asgene)
 #' Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", out = "./")
-Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype="fasta",filetype="nucl",out="./"){
+Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="./",search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype="nucl",filetype="fasta",out="./"){
   #Install dependent packages
   if (!requireNamespace("dplyr", quietly = TRUE))
     install.packages("dplyr")
@@ -173,4 +173,4 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       merge.data1 = merge(merge.data1,new.data,all=T)
     }
     write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
-  }
+}
