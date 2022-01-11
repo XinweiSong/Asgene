@@ -13,6 +13,7 @@ Asgene(
   search_parameters = "",
   seqtype = "",
   filetype = "",
+  PE = TRUE,
   out = ""
 )
 }
@@ -27,9 +28,11 @@ Asgene(
 
 \item{search_parameters}{Define metagenomic comparison parameters; type = "character"; default = "-e 1e-4 -p 28 --query-cover 80 --id 50"}
 
-\item{seqtype}{Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"}
+\item{seqtype}{Specify your sequence type, nucl or prot; type = "character"; default = "nucl"}
 
-\item{filetype}{Specify your sequence type, nucl or prot; type = "character"; default = "nucl"}
+\item{filetype}{Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"}
+
+\item{PE}{Specifies whether your metagenomic data were PE files; type = "logical"; default = TRUE}
 
 \item{out}{Specify the directory for the final result file; type = "character"; default = "./"}
 }
@@ -41,4 +44,4 @@ A manually curated arsenic functional gene database/tool (AsgeneDB) was develope
 }
 \examples{
 library(Asgene)
-Asgene(analysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", out = "./")
+Asgene(analysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", PE="TRUE", out = "./")
