@@ -168,7 +168,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     else{
       list <- list.files(path="./sample_file/",pattern = method)
     }
-    system("mkdir gene_tax")
+    system("mkdir sample_gene_tax")
     for (i in list){
       if (PE == TRUE){
       a <- read.table(file=paste("./sample_merge/",i,sep = ""),sep = " ",header =F)}
@@ -182,14 +182,14 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       a1<- mutate(a,"sample"=i)
       id_gene_tax_pathway <- read.csv("./id_gene_tax_pathway_total.csv",sep=",",header = T)
       sample_gene_tax_pathway <- merge(a1,id_gene_tax_pathway,by="protein_id" )
-      write.table(sample_gene_tax_pathway, file = paste("./gene_tax/",i,".csv",sep = ""),sep=",",quote = FALSE,row.names = FALSE)
+      write.table(sample_gene_tax_pathway, file = paste("./sample_gene_tax/",i,".csv",sep = ""),sep=",",quote = FALSE,row.names = FALSE)
     }
-    a <- list.files(path="./gene_tax/",pattern = ".csv")
+    a <- list.files(path="./sample_gene_tax/",pattern = ".csv")
     n <- length(a)
-    merge.data <- read.csv(file = paste("./gene_tax/",a[1],sep = ""),header=T,sep=",")
+    merge.data <- read.csv(file = paste("./sample_gene_tax/",a[1],sep = ""),header=T,sep=",")
     merge.data1 <- data.frame(merge.data)
     for (i in 2:n){
-      new.data =read.csv(file=paste("./gene_tax/",a[i],sep = ""),sep = ",",header =T)
+      new.data =read.csv(file=paste("./sample_gene_tax/",a[i],sep = ""),sep = ",",header =T)
       merge.data1 = merge(merge.data1,new.data,all=T)
     }
     write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
