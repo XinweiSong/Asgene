@@ -1,5 +1,5 @@
 
-# AsgeneDB: A curated orthology arsenic metabolism gene database for metagenome annotation
+# AsgeneDB: A curated orthology arsenic metabolism gene database for metagenome annotation 
 
 <br> **Description**: A manually curated arsenic functional gene
 database (AsgeneDB) and R package (Asgen package) are developed for
