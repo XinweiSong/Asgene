@@ -145,7 +145,6 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       #group_by_sum
       df1<-aggregate(df$d,by=list(df$gene),sum)
       colnames(df1) <- c("gene",as.character(i))
-      gsub(".diamond","",df1)
       system("mkdir sample_gene_abundance")
       write.table(df1, file = paste("./sample_gene_abundance/",i, ".csv",sep = ""),sep=",",quote = FALSE,row.names = FALSE)
     }
