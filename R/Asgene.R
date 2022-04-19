@@ -7,8 +7,8 @@
 #' @param toolpath Specify directory for searching tool location; type = "character"; default = "./"
 #' @param search_parameters Define metagenomic comparison parameters; type = "character"; default = "-e 1e-4 -p 28 --query-cover 80 --id 50"
 #' @param seqtype Specify your sequence type, nucl or prot; type = "character"; default = "nucl"
-#' @param filetype Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"
-#' @param PE Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension", e.g. XINWEI_R1.fasta, XINWEI_R2.fasta; type = "logical"; default = TRUE
+#' @param filetype Specify the extensions of your sequence files, e.g., fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"
+#' @param PE Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension" (e.g., XINWEI_R1.fasta and XINWEI_R2.fasta); type = "logical"; default = TRUE
 #' @param out Specify the directory for the final result file; type = "character"; default = "./"
 #'
 #' @return
@@ -39,6 +39,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       else{
         stop()
       }
+      print(i)
     }
   }
 
@@ -53,7 +54,9 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       file_1 <- paste(workdir,i,sep="");
       out <- gsub(filetype,"usearch",file);
       out <- paste("./sample_file/",out,sep = "");
-      system(paste(toolpath,"usearch -usearch_global ",file_1," -db ./AsgeneDB.fa ",search_parameters," -blast6out ",out,sep = ""))}
+      system(paste(toolpath,"usearch -usearch_global ",file_1," -db ./AsgeneDB.fa ",search_parameters," -blast6out ",out,sep = ""))
+      print(i)
+      }
     }
   }
 
@@ -72,7 +75,9 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       if (seqtype == "nucl") {
         system(paste(toolpath,"blastx -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}
       if (seqtype == "prot"){
-        system(paste(toolpath,"blastp -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}}}
+        system(paste(toolpath,"blastp -db ./AsgeneDB ",search_parameters," -query ",file_1," -out ",out,sep = ""))}
+      print(i)}
+      }
   }
   else {
     stop("Specify the database searching tool you plan to use!")
@@ -81,8 +86,11 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
   #Merge metagenomic PE files (take union)
   list <-read.table("./sampleinfo.txt",sep = "\t",header =F)
     if (PE == TRUE){
+      system("mkdir sample_merge")
       for (i in list[,1]){
-        system("mkdir sample_merge");
+        info1<- file.info(paste("./sample_file/",i,"_R1.",method,sep=""))
+        info2<- file.info(file=paste("./sample_file/",i,"_R2.",method,sep=""))
+        if(info1$size !=0 & info2$size !=0){
     a <- read.table(file=paste("./sample_file/",i,"_R1.",method,sep=""),sep = "\t");
     a1 <- data.frame(a);
     b <- read.table(file=paste("./sample_file/",i,"_R2.",method,sep=""),sep = "\t");
@@ -94,7 +102,11 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     e1 <- merge(e1,e,by=c("V1","V3"));
     e1 <- e1 %>% filter(!duplicated(V1));
     write.table(e1,file=paste("sample_merge/",i,".",method,sep=""), sep= " ",quote = FALSE,row.names = FALSE,col.names = F)
-      }}
+    print(i)
+    }
+        else{next}
+      }
+      }
 
   #count the abundance values of each sample and standardize
   if ( analysis == "abundance" ) {
@@ -107,7 +119,10 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       if (PE == TRUE){
       a <- read.table(file=paste("./sample_merge/",i,sep = ""),sep = " ",header =F)}
       else{
-        a <- read.table(file=paste("./sample_file/",i,sep = ""),sep = " ",header =F)
+        info<- file.info(paste("./sample_file/",i,sep = ""))
+        if(info$size != 0){
+        a <- read.table(file=paste("./sample_file/",i,sep = ""),sep = " ",header =F)}
+        else {next}
       }
       i<- gsub(paste(".",method,sep = ""),"",i)
       a1<- mutate(a,v=i)
@@ -147,6 +162,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       colnames(df1) <- c("gene",as.character(i))
       system("mkdir sample_gene_abundance")
       write.table(df1, file = paste("./sample_gene_abundance/",i, ".csv",sep = ""),sep=",",quote = FALSE,row.names = FALSE)
+      print(i)
     }
 
     a <- list.files(path="./sample_gene_abundance/",pattern=".csv")
@@ -191,6 +207,6 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     for (i in 2:n){
       new.data =read.csv(file=paste("./sample_gene_tax/",a[i],sep = ""),sep = ",",header =T)
       merge.data1 = merge(merge.data1,new.data,all=T)
-    }
-    write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
+      }
+  write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
   }}

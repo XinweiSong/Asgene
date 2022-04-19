@@ -2,7 +2,9 @@
 % Please edit documentation in R/Asgene.R
 \name{Asgene}
 \alias{Asgene}
-\title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism}
+\title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
+Description
+A manually curated arsenic functional gene database/tool (AsgeneDB) was developed for rapid and accurate metagenomic analysis.}
 \usage{
 Asgene(
   analysis = "abundance",
@@ -29,9 +31,9 @@ Asgene(
 
 \item{seqtype}{Specify your sequence type, nucl or prot; type = "character"; default = "nucl"}
 
-\item{filetype}{Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"}
+\item{filetype}{Specify the extensions of your sequence files, e.g., fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"}
 
-\item{PE}{Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension", e.g. XINWEI_R1.fasta, XINWEI_R2.fasta; type = "logical"; default = TRUE}
+\item{PE}{Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension" (e.g., XINWEI_R1.fasta and XINWEI_R2.fasta); type = "logical"; default = TRUE}
 
 \item{out}{Specify the directory for the final result file; type = "character"; default = "./"}
 }
