@@ -183,6 +183,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       sample_gene_tax_pathway <- merge(a1,id_gene_tax_pathway,by="protein_id" )
       write.table(sample_gene_tax_pathway, file = paste("./sample_gene_tax/",i,".csv",sep = ""),sep=",",quote = FALSE,row.names = FALSE)
     }
+
     a <- list.files(path="./sample_gene_tax/",pattern = ".csv")
     n <- length(a)
     merge.data <- read.csv(file = paste("./sample_gene_tax/",a[1],sep = ""),header=T,sep=",")
