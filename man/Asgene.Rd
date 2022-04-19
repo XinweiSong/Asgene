@@ -2,19 +2,20 @@
 % Please edit documentation in R/Asgene.R
 \name{Asgene}
 \alias{Asgene}
-\title{AsgeneDB: A curated orthology arsenic metabolism gene database for metagenome annotation
-}
+\title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
+Description
+A manually curated arsenic functional gene database/tool (AsgeneDB) was developed for rapid and accurate metagenomic analysis.}
 \usage{
 Asgene(
-  analysis = "",
-  workdir = "",
-  method = "",
-  toolpath = "",
-  search_parameters = "",
-  seqtype = "",
-  filetype = "",
+  analysis = "abundance",
+  workdir = "./",
+  method = "diamond",
+  toolpath = "./",
+  search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",
+  seqtype = "nucl",
+  filetype = "fasta",
   PE = TRUE,
-  out = ""
+  out = "./"
 )
 }
 \arguments{
@@ -36,9 +37,15 @@ Asgene(
 
 \item{out}{Specify the directory for the final result file; type = "character"; default = "./"}
 }
+\value{
+
+}
 \description{
+AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
+Description
 A manually curated arsenic functional gene database/tool (AsgeneDB) was developed for rapid and accurate metagenomic analysis.
 }
 \examples{
 library(Asgene)
-Asgene(analysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", PE="TRUE", out = "./")
+Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./")
+}
