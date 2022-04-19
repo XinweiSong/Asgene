@@ -32,7 +32,7 @@ Asgene(
 
 \item{filetype}{Specify the extensions of your sequence files, e.g. fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"}
 
-\item{PE}{Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension", e.g. XINWEI_R1.fasta, XINWEI_R2.fasta; type = "logical"; default = TRUE}
+\item{PE}{Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension", e.g. XINWEI_R1.fasta, XINWEI_R2.fasta; type = "logical"; default = TRUE }
 
 \item{out}{Specify the directory for the final result file; type = "character"; default = "./"}
 }
