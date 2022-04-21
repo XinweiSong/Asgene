@@ -132,7 +132,9 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       sample <- list$v
       t<- list [grep(i,list$v),]
       a2<- merge(t,a1,by="v")
-      a2<- a2[,c(1,2,3,5)]
+      if (PE == TRUE){
+      a2<- a2[,c(1,2,3,5)]}
+      else{a2<- a2[,c(1,2,3,4)]}
       b <- read.table("./asgene.map",sep = "")
       colnames(a2)[4] <- "pi"
       colnames(b)[1] <- "pi"
