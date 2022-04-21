@@ -111,17 +111,17 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
   #count the abundance values of each sample and standardize
   if ( analysis == "abundance" ) {
     if (PE == TRUE){
-    file.name <- list.files(path="./sample_merge/",pattern = method)}
+      file.name <- list.files(path="./sample_merge/",pattern = method)}
     else{
       file.name <- list.files(path="./sample_file/",pattern = method)
     }
     for (i in file.name){
       if (PE == TRUE){
-      a <- read.table(file=paste("./sample_merge/",i,sep = ""),sep = " ",header =F)}
+        a <- read.table(file=paste("./sample_merge/",i,sep = ""),sep = " ",header =F)}
       else{
         info<- file.info(paste("./sample_file/",i,sep = ""))
         if(info$size != 0){
-        a <- read.table(file=paste("./sample_file/",i,sep = ""),sep = " ",header =F)}
+          a <- read.table(file=paste("./sample_file/",i,sep = ""),sep = "\t",header =F)}
         else {next}
       }
       i<- gsub(paste(".",method,sep = ""),"",i)
@@ -133,7 +133,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       t<- list [grep(i,list$v),]
       a2<- merge(t,a1,by="v")
       if (PE == TRUE){
-      a2<- a2[,c(1,2,3,5)]}
+        a2<- a2[,c(1,2,3,5)]}
       else{a2<- a2[,c(1,2,3,4)]}
       b <- read.table("./asgene.map",sep = "")
       colnames(a2)[4] <- "pi"
@@ -181,16 +181,16 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
   #count functional gene drive species of all samples
   if ( analysis == "taxonomy" ) {
     if (PE == TRUE){
-    list <- list.files(path="./sample_merge/",pattern = method)}
+      list <- list.files(path="./sample_merge/",pattern = method)}
     else{
       list <- list.files(path="./sample_file/",pattern = method)
     }
     system("mkdir sample_gene_tax")
     for (i in list){
       if (PE == TRUE){
-      a <- read.table(file=paste("./sample_merge/",i,sep = ""),sep = " ",header =F)}
+        a <- read.table(file=paste("./sample_merge/",i,sep = ""),sep = " ",header =F)}
       else{
-      a <- read.table(file=paste("./sample_file/",i,sep = ""),sep = " ",header =F)
+        a <- read.table(file=paste("./sample_file/",i,sep = ""),sep = "\t",header =F)
       }
       colnames(a)[1] = "reads_id"
       colnames(a)[3] = "protein_id"
@@ -209,6 +209,6 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
     for (i in 2:n){
       new.data =read.csv(file=paste("./sample_gene_tax/",a[i],sep = ""),sep = ",",header =T)
       merge.data1 = merge(merge.data1,new.data,all=T)
-      }
-  write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
+    }
+    write.csv(merge.data1,file=paste(out,"sample_gene_tax_pathway.csv",sep=""),row.names=F)
   }}
