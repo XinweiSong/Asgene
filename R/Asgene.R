@@ -154,7 +154,7 @@ Asgene <- function(analysis="abundance",workdir="./",method="diamond",toolpath="
       v<-merge(x,y,by="pi")
       v1 <- v[!duplicated(v$pi),]
 
-      #Formula=SUM protein{[mapped reads/(total reads*protein length)]*10^9}
+      #Formula=SUM protein{[mapped reads/(total reads*protein length*3)]*10^9}
       v1$totalreads <- as.numeric(v1$totalreads)
       df<- data.frame(v1)
       df<- mutate(df,c=v1$n*10^9/(v1$length*3))
