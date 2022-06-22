@@ -29,7 +29,7 @@ metabolism in microbial communities in various environments.
 ### Database files
 
 **Database files can be downloaded from
-<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB>**
+<https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>**
 
 Four files are included in
 AsgeneDB.zip(<https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>):
