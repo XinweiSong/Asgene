@@ -1,1 +1,8 @@
+library/
+local/
+cellar/
+lock/
+python/
+staging/
 .Rproj.user
+docs
