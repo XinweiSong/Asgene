@@ -119,4 +119,4 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 -   You need to place a tab-separated file in your working path that
     contains the sample name and the number of sequences. Note that file
     extensions should not be included here. For example:
-    <https://github.com/XinweiSong/AsgeneDB/blob/main/sampleinfo.txt>
+    <https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/sampleinfo.txt>
