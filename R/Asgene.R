@@ -88,7 +88,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
     for (i in list[, 1]) {
       info1 <- file.info(paste("./sample_file/", i, "_R1.", method, sep = ""))
       info2 <- file.info(file = paste("./sample_file/", i, "_R2.", method, sep = ""))
-      if (info1$size != 0 & info2$size != 0) {
+      if (info1$size != 0 && info2$size != 0) {
         a <- read.table(file = paste("./sample_file/", i, "_R1.", method, sep = ""), sep = "\t")
         a1 <- data.frame(a)
         b <- read.table(file = paste("./sample_file/", i, "_R2.", method, sep = ""), sep = "\t")
@@ -130,7 +130,6 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       # add total reads
       list <- data.frame(list)
       colnames(list)[1] <- "v"
-      sample <- list$v
       t <- list[grep(i, list$v), ]
       a2 <- merge(t, a1, by = "v")
       if (PE == TRUE) {
