@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Xinwei", "Song", , "12014067@zju.edu.cn", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgen package) are developed for rapid and accurate metagenomic analysis.
+Description: A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
