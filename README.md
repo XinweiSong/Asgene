@@ -29,10 +29,10 @@ metabolism in microbial communities in various environments.
 ### Database files
 
 **Database files can be downloaded from
-<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB>**
+<https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>**
 
 Four files are included in
-AsgeneDB.zip(<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>):
+AsgeneDB.zip(<https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>):
 1. **AsgeneDB.fa**: Fasta format representative sequences obtained by
 clustering curated sequences at 100% sequence identity. This file can be
 used for “BLAST” searching arsenic genes in shotgun metagenomes.
