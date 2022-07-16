@@ -37,9 +37,6 @@ Asgene(
 
 \item{out}{Specify the directory for the final result file; type = "character"; default = "./"}
 }
-\value{
-
-}
 \description{
 AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
 Description
