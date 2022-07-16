@@ -1,8 +1,8 @@
 
-# AsgeneDB:  A curated orthology arsenic metabolism gene database and computational tool for metagenome annotation 
+# AsgeneDB: A curated orthology arsenic metabolism gene database for metagenome annotation
 
 <br> **Description**: A manually curated arsenic functional gene
-database (AsgeneDB) and R package (Asgene package) are developed for
+database (AsgeneDB) and R package (Asgen package) are developed for
 rapid and accurate metagenomic analysis.<br> <br> **Authors**: Xinwei
 Song, Yongguan Zhu, Yongming Luo, Jianming Xu, Bin Ma\* <br>
 
@@ -29,10 +29,10 @@ metabolism in microbial communities in various environments.
 ### Database files
 
 **Database files can be downloaded from
-<https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>**
+<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB>**
 
 Four files are included in
-AsgeneDB.zip(<https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>):
+AsgeneDB.zip(<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>):
 1. **AsgeneDB.fa**: Fasta format representative sequences obtained by
 clustering curated sequences at 100% sequence identity. This file can be
 used for “BLAST” searching arsenic genes in shotgun metagenomes.
@@ -119,4 +119,4 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 -   You need to place a tab-separated file in your working path that
     contains the sample name and the number of sequences. Note that file
     extensions should not be included here. For example:
-    <https://github.com/XinweiSong/AsgeneDB/blob/main/sampleinfo.txt>
+    <https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/sampleinfo.txt>
