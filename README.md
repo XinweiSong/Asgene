@@ -2,7 +2,7 @@
 # AsgeneDB:  A curated orthology arsenic metabolism gene database and computational tool for metagenome annotation 
 
 <br> **Description**: A manually curated arsenic functional gene
-database (AsgeneDB) and R package (Asgen package) are developed for
+database (AsgeneDB) and R package (Asgene package) are developed for
 rapid and accurate metagenomic analysis.<br> <br> **Authors**: Xinwei
 Song, Yongguan Zhu, Yongming Luo, Jianming Xu, Bin Ma\* <br>
 
