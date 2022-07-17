@@ -119,7 +119,7 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 
 <div class="figure">
 
-<img src="/XinweiSong/Asgene/results1.png" alt="A caption" width="50%" />
+<img src="https://github.com/XinweiSong/Asgene/blob/main/results1.png" alt="A caption" width="50%" />
 <p class="caption">
 A caption
 </p>
