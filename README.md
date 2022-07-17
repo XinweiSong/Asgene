@@ -115,11 +115,11 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 
 ### Output
 
-\#\#\#\#\#Arsenic metabolism gene abundance analysis
+##### Arsenic metabolism gene abundance analysis
 
 <div class="figure">
 
-<img src="/Users/xinweisong/Desktop/results1.png" alt="A caption" width="100%" />
+<img src="/Users/xinweisong/Desktop/results1.png" alt="A caption" width="50%" />
 <p class="caption">
 A caption
 </p>
