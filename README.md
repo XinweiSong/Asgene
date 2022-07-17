@@ -113,6 +113,19 @@ Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./
 Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta",PE = TRUE, out = "./")
 ```
 
+### Output
+
+\#\#\#\#\#Arsenic metabolism gene abundance analysis
+
+<div class="figure">
+
+<img src="/Users/xinweisong/Desktop/results1.png" alt="A caption" width="100%" />
+<p class="caption">
+A caption
+</p>
+
+</div>
+
 #### **NOTE:**
 
 -   Before you begin, place AsgeneDB files in the current working path.

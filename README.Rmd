@@ -77,6 +77,12 @@ Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./
 #Arsenic metabolism taxonomy analysis
 Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta",PE = TRUE, out = "./")
 ``` 
+### Output
+#####Arsenic metabolism gene abundance analysis
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+knitr::include_graphics("/Users/xinweisong/Desktop/results1.png")
+```
+
 #### **NOTE:**
 * Before you begin, place AsgeneDB files in the current working path.
 * You need to place a tab-separated file in your working path that contains the sample name and the number of sequences. Note that file extensions should not be included here.  For example: <https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/sampleinfo.txt>
