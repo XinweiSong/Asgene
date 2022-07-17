@@ -119,9 +119,9 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 
 <div class="figure">
 
-<img src="/Users/xinweisong/Desktop/results1.png" alt="A caption" width="50%" />
+<img src="/Users/xinweisong/Desktop/results1.png" alt="Output of As metabolic gene abundance analysis" width="50%" />
 <p class="caption">
-A caption
+Output of As metabolic gene abundance analysis
 </p>
 
 </div>

@@ -79,7 +79,7 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 ``` 
 ### Output
 ##### Arsenic metabolism gene abundance analysis
-```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '50%'}
+```{r pressure, echo=FALSE, fig.cap="Output of As metabolic gene abundance analysis", out.width = '50%'}
 knitr::include_graphics("/Users/xinweisong/Desktop/results1.png")
 ```
 
