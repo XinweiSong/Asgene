@@ -8,7 +8,7 @@
 #' @param seqtype Specify your sequence type, nucl or prot; type = "character"; default = "nucl"
 #' @param filetype Specify the extensions of your sequence files, e.g., fastq, fastq.gz, fasta,fasta.gz, fq, fq.gz, fa, fa.gz; type = "character"; default = "fasta"
 #' @param PE Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension" (e.g., XINWEI_R1.fasta and XINWEI_R2.fasta); type = "logical"; default = TRUE
-#' @param out Specify the directory for the final result file; type = "character"; default = "./"
+#' @param output Specify the directory for the final result file; type = "character"; default = "./"
 #'
 #' @return
 #' @export
@@ -42,12 +42,10 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       }
       if (seqtype == "prot") {
         system(paste(toolpath, "diamond blastp ", search_parameters, " -d ./AsgeneDB.dmnd -q ", file_1, " -o ", out, sep = ""))
-      } else {
-        next
       }
-      print(i)
-    }
-  } else if (method == "usearch") {
+  }
+}
+        else if (method == "usearch") {
     if (grepl("gz", filetype)) {
       stop("Only fastq and fasta files are supported by usearch!")
     } else {
@@ -181,7 +179,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       new.data <- read.csv(file = paste("./sample_gene_abundance/", a[i], sep = ""), sep = ",", header = T)
       merge.data1 <- merge(merge.data1, new.data, by = "gene", all = T)
     }
-    write.csv(merge.data1, file = paste(out, "sample_abundance.csv", sep = ""), row.names = F)
+    write.csv(merge.data1, file = paste(output, "sample_abundance.csv", sep = ""), row.names = F)
   }
 
   # count functional gene drive species of all samples
@@ -215,6 +213,6 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       new.data <- read.csv(file = paste("./sample_gene_tax/", a[i], sep = ""), sep = ",", header = T)
       merge.data1 <- merge(merge.data1, new.data, all = T)
     }
-    write.csv(merge.data1, file = paste(out, "sample_gene_tax_pathway.csv", sep = ""), row.names = F)
+    write.csv(merge.data1, file = paste(output, "sample_gene_tax_pathway.csv", sep = ""), row.names = F)
   }
 }

@@ -33,7 +33,7 @@ Asgene(
 
 \item{PE}{Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension" (e.g., XINWEI_R1.fasta and XINWEI_R2.fasta); type = "logical"; default = TRUE}
 
-\item{out}{Specify the directory for the final result file; type = "character"; default = "./"}
+\item{output}{Specify the directory for the final result file; type = "character"; default = "./"}
 }
 \description{
 A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
