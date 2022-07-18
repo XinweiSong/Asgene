@@ -1,6 +1,6 @@
 #' AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
 #' Description
-#' A manually curated arsenic functional gene database/tool (AsgeneDB) was developed for rapid and accurate metagenomic analysis.
+#' A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
 #' @param analysis Choose the target you want to analyze,abundance or taxonomy; type = "character"; default = "abundance"
 #' @param workdir Specify directory for sequence file location;type = "character"; default = "./"
 #' @param method Specify the database searching tool you plan to use, currently diamond, usearch and blast are supported; type = "character"; default = "diamond"

@@ -4,7 +4,7 @@
 \alias{Asgene}
 \title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
 Description
-A manually curated arsenic functional gene database/tool (AsgeneDB) was developed for rapid and accurate metagenomic analysis.}
+A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.}
 \usage{
 Asgene(
   analysis = "abundance",
@@ -40,9 +40,9 @@ Asgene(
 \description{
 AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
 Description
-A manually curated arsenic functional gene database/tool (AsgeneDB) was developed for rapid and accurate metagenomic analysis.
+A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
 }
 \examples{
 library(Asgene)
-Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./")
+Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50", seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./")
 }
