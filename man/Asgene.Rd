@@ -13,7 +13,7 @@ Asgene(
   seqtype = "nucl",
   filetype = "fasta",
   PE = TRUE,
-  out = "./"
+  output = "./"
 )
 }
 \arguments{
