@@ -2,9 +2,7 @@
 % Please edit documentation in R/Asgene.R
 \name{Asgene}
 \alias{Asgene}
-\title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
-Description
-A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.}
+\title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism.}
 \usage{
 Asgene(
   analysis = "abundance",
@@ -38,8 +36,6 @@ Asgene(
 \item{out}{Specify the directory for the final result file; type = "character"; default = "./"}
 }
 \description{
-AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
-Description
 A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
 }
 \examples{
