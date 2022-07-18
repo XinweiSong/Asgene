@@ -26,6 +26,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
   # Call comparison tool
   if (method == "diamond") {
     system("mkdir sample_file")
+    write.fasta(sequences = AsgeneDB, names =names(AsgeneDB), file.out = 'AsgeneDB')
     system(paste(toolpath, "diamond makedb --in AsgeneDB --db ./AsgeneDB", sep = ""))
     file <- list.files(path = workdir, pattern = filetype)
     for (i in file) {
