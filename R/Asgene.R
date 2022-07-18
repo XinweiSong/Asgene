@@ -27,7 +27,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
   # Call comparison tool
   if (method == "diamond") {
     system("mkdir sample_file")
-    system(paste(toolpath, "diamond makedb --in ./AsgeneDB.fa --db ./AsgeneDB", sep = ""))
+    system(paste(toolpath, "diamond makedb --in AsgeneDB --db ./AsgeneDB", sep = ""))
     file <- list.files(path = workdir, pattern = filetype)
     for (i in file) {
       file_1 <- paste(workdir, i, sep = "")
@@ -53,7 +53,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         file_1 <- paste(workdir, i, sep = "")
         out <- gsub(filetype, "usearch", file)
         out <- paste("./sample_file/", out, sep = "")
-        system(paste(toolpath, "usearch -usearch_global ", file_1, " -db ./AsgeneDB.fa ", search_parameters, " -blast6out ", out, sep = ""))
+        system(paste(toolpath, "usearch -usearch_global ", file_1, " -db AsgeneDB ", search_parameters, " -blast6out ", out, sep = ""))
         print(i)
       }
     }
@@ -63,7 +63,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
     } else {
       system("mkdir sample_file")
       file <- list.files(path = workdir, pattern = filetype)
-      system(toolpath, "makeblastdb -dbtype prot -input_type fasta -in ./AsgeneDB.fa -out ./AsgeneDB")
+      system(toolpath, "makeblastdb -dbtype prot -input_type fasta -in AsgeneDB -out ./AsgeneDB")
       for (i in file) {
         file_1 <- paste(workdir, i, sep = "")
         out <- gsub(filetype, "blast", file)
@@ -137,14 +137,14 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       } else {
         a2 <- a2[, c(1, 2, 3, 4)]
       }
-      b <- read.table("./asgene.map", sep = "")
+      b <- asgene.map
       colnames(a2)[4] <- "pi"
       colnames(b)[1] <- "pi"
       colnames(b)[2] <- "gene"
       g <- merge(a2, b, by = "pi")
       g <- g[, -6]
       colnames(g)[3] <- "totalreads"
-      u <- read.table("./length.txt", sep = "\t", header = F)
+      u <- length
       colnames(u)[1] <- "pi"
       result <- merge(g, u, by = "pi")
       colnames(result)[6] <- "length"
@@ -199,7 +199,6 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       a <- a[, c(1, 3)] %>% filter(!duplicated(a[, 1]))
       i <- gsub(".diamond", "", i)
       a1 <- mutate(a, "sample" = i)
-      id_gene_tax_pathway <- read.csv("./id_gene_tax_pathway_total.csv", sep = ",", header = T)
       sample_gene_tax_pathway <- merge(a1, id_gene_tax_pathway, by = "protein_id")
       write.table(sample_gene_tax_pathway, file = paste("./sample_gene_tax/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
     }
