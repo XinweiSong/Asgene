@@ -2,7 +2,7 @@
 % Please edit documentation in R/Asgene.R
 \name{Asgene}
 \alias{Asgene}
-\title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism}
+\title{AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism#' AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism}
 \usage{
 Asgene(
   analysis = "abundance",
