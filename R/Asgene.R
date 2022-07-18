@@ -22,7 +22,11 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
   if (!requireNamespace("dplyr", quietly = TRUE)) {
     install.packages("dplyr")
   }
-  library("dplyr")
+  if (!requireNamespace("seqinr", quietly = TRUE)) {
+    install.packages("seqinr")
+  }
+  library(dplyr)
+  library(seqinr)
   # Call comparison tool
   if (method == "diamond") {
     system("mkdir sample_file")
