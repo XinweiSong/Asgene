@@ -43,9 +43,9 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       if (seqtype == "prot") {
         system(paste(toolpath, "diamond blastp ", search_parameters, " -d ./AsgeneDB.dmnd -q ", file_1, " -o ", out, sep = ""))
       }
+    }
   }
-}
-        else if (method == "usearch") {
+  else if (method == "usearch") {
     if (grepl("gz", filetype)) {
       stop("Only fastq and fasta files are supported by usearch!")
     } else {
