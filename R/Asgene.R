@@ -43,7 +43,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       if (seqtype == "prot") {
         system(paste(toolpath, "diamond blastp ", search_parameters, " -d ./AsgeneDB.dmnd -q ", file_1, " -o ", out, sep = ""))
       } else {
-        stop()
+        next
       }
       print(i)
     }
