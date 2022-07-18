@@ -216,3 +216,4 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
     write.csv(merge.data1, file = paste(output, "sample_gene_tax_pathway.csv", sep = ""), row.names = F)
   }
 }
+#111
