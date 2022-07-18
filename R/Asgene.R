@@ -155,7 +155,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       x <- result
       x <- x[order(x$gene), ]
 
-      y <- count(x, x$pi)
+      y <- dplyr::count(x, x$pi)
       colnames(y)[1] <- "pi"
       v <- merge(x, y, by = "pi")
       v1 <- v[!duplicated(v$pi), ]
