@@ -94,7 +94,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         file_R1 <- read.table(file = paste("./sample_file/", i, "_R1.", method, sep = ""), sep = "\t")
         file_R1 <- data.frame(file_R1)
         file_R2 <- read.table(file = paste("./sample_file/", i, "_R2.", method, sep = ""), sep = "\t")
-        file_R1 <- data.frame(file_R1)
+        file_R2 <- data.frame(file_R2)
         file_total <- rbind(file_R1, file_R2)
         file_total_2 <- aggregate(file_total[, 3] ~ file_total[, 1], data = file_total, FUN = "max")
         file_total_2 <- as.data.frame(file_total_2)
@@ -150,7 +150,6 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       result_g <- result_g[, -6]
       names(result_g)[3] <- "totalreads"
       length <- length
-      length <- as.data.frame(length)
       names(length)[1] <- "pi"
       result <- merge(result_g, length, by = "pi")
       result <- as.data.frame(result)
