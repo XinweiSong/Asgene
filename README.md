@@ -30,7 +30,7 @@ metabolism in microbial communities in various environments.
 
 ##### 1. The database files user needs are already built into the R package (Asgene). Therefore, when using Asgene R package to analyze metagenomic data, there is no need to download AsgeneDB separately.
 
-##### 2. Example datasets are provided as input and output to help users better understand this package. The example datasets consists of three protein sequence files, stored as testdata1.rda, testdata2.rda, testdata3.rda.
+##### 2. Example datasets are provided as input and output to help users better understand this package. The example datasets consist of three protein sequence files, stored as testdata1.rda, testdata2.rda, testdata3.rda.
 
 ##### 3. In order to facilitate users to use the AsgeneDB individually for personalized analysis, AsgeneDB can be downloaded from <https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>.
 
