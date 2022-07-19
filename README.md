@@ -28,7 +28,7 @@ metabolism in microbial communities in various environments.
 
 ### Database files
 
-##### 1. The database files user needs are built into the R package (Asgene). Therefore, when using Asgene R package to analyze metagenomic data, there is no need to download AsgeneDB separately.
+##### 1. The database files user needs are already built into the R package (Asgene). Therefore, when using Asgene R package to analyze metagenomic data, there is no need to download AsgeneDB separately.
 
 ##### 2. Example datasets are provided as input and output to help users better understand this package. The example datasets consists of three protein sequence files, stored as testdata1.rda, testdata2.rda, testdata3.rda.
 
