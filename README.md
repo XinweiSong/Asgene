@@ -116,11 +116,14 @@ This is a basic example which shows you how to use the package:
 
 ``` r
 library(Asgene)
-#
 #Arsenic metabolism gene abundance analysis
 Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", PE = TRUE , output = "./")
 #Arsenic metabolism taxonomy analysis
-Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta",PE = TRUE, output = "./")
+Asgene(anlysis = "taxonomy", workdir = "
+./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta",PE = TRUE, output = "./")
+#Example datasets useing
+Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "prot", output = "./", test.data = TRUE)
+Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "prot", output = "./", test.data = TRUE)
 ```
 
 ### Output
@@ -136,9 +139,19 @@ Output of As metabolic gene abundance analysis
 
 </div>
 
+##### Output 2
+
+<div class="figure">
+
+<img src="/Users/xinweisong/Desktop/results2.png" alt="Output of As metabolic taxonomy analysis" width="20%" height="10%" />
+<p class="caption">
+Output of As metabolic taxonomy analysis
+</p>
+
+</div>
+
 #### **NOTE:**
 
--   Before you begin, place AsgeneDB files in the current working path.
 -   You need to place a tab-separated file in your working path that
     contains the sample name and the number of sequences. Note that file
     extensions should not be included here. For example:
