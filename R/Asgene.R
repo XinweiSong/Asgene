@@ -97,8 +97,8 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         b1 <- data.frame(b)
         e <- rbind(a1, b1)
         e1 <- aggregate(e[, 3] ~ e[, 1], data = e, FUN = "max")
-        colnames(e1)[1] <- "V1"
-        colnames(e1)[2] <- "V3"
+        names(e1)[1] <- "V1"
+        names(e1)[2] <- "V3"
         e1 <- merge(e1, e, by = c("V1", "V3"))
         e1 <- e1 %>% filter(!duplicated(V1))
         write.table(e1, file = paste("sample_merge/", i, ".", method, sep = ""), sep = " ", quote = FALSE, row.names = FALSE, col.names = F)
@@ -131,7 +131,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       a1 <- mutate(a, v = i)
       # add total reads
       list <- data.frame(list)
-      colnames(list)[1] <- "v"
+      names(list)[1] <- "v"
       t <- list[grep(i, list$v), ]
       a2 <- merge(t, a1, by = "v")
       if (PE == TRUE) {
@@ -140,21 +140,21 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         a2 <- a2[, c(1, 2, 3, 4)]
       }
       b <- asgene.map
-      colnames(a2)[4] <- "pi"
-      colnames(b)[1] <- "pi"
-      colnames(b)[2] <- "gene"
+      names(a2)[4] <- "pi"
+      names(b)[1] <- "pi"
+      names(b)[2] <- "gene"
       g <- merge(a2, b, by = "pi")
       g <- g[, -6]
-      colnames(g)[3] <- "totalreads"
+      names(g)[3] <- "totalreads"
       u <- length
-      colnames(u)[1] <- "pi"
+      names(u)[1] <- "pi"
       result <- merge(g, u, by = "pi")
-      colnames(result)[6] <- "length"
+      names(result)[6] <- "length"
       x <- result
       x <- x[order(x$gene), ]
 
       y <- dplyr::count(x, x$pi)
-      colnames(y)[1] <- "pi"
+      names(y)[1] <- "pi"
       v <- merge(x, y, by = "pi")
       v1 <- v[!duplicated(v$pi), ]
 
@@ -165,7 +165,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       df <- mutate(df, d = c / v1$totalreads)
       # group_by_sum
       df1 <- aggregate(df$d, by = list(df$gene), sum)
-      colnames(df1) <- c("gene", as.character(i))
+      names(df1) <- c("gene", as.character(i))
       system("mkdir sample_gene_abundance")
       write.table(df1, file = paste("./sample_gene_abundance/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
       print(i)
@@ -196,8 +196,8 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       } else {
         a <- read.table(file = paste("./sample_file/", i, sep = ""), sep = "\t", header = F)
       }
-      colnames(a)[1] <- "reads_id"
-      colnames(a)[3] <- "protein_id"
+      names(a)[1] <- "reads_id"
+      names(a)[3] <- "protein_id"
       a <- a[, c(1, 3)] %>% filter(!duplicated(a[, 1]))
       i <- gsub(".diamond", "", i)
       a1 <- mutate(a, "sample" = i)
