@@ -36,7 +36,7 @@ Asgene(
 
 \item{output}{Specify the directory for the final result file; type = "character"; default = "./"}
 
-\item{test.data}{Sample datasets are provide as input and output to help users better understand this package; type = "logical"; default = FALSE}
+\item{test.data}{Example datasets are provided as input and output to help users better understand this package; type = "logical"; default = FALSE}
 }
 \description{
 A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
@@ -44,4 +44,5 @@ A manually curated arsenic functional gene database (AsgeneDB) and R package (As
 \examples{
 library(Asgene)
 Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50", seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./", test.data = FALSE)
+Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "prot", output = "./", test.data = TRUE)
 }
