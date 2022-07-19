@@ -132,7 +132,7 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 
 <div class="figure">
 
-<img src="https://github.com/XinweiSong/Asgene/blob/main/results1.png" alt="Output of As metabolic gene abundance analysis" width="25%" height="25%" />
+<img src="/Users/xinweisong/Desktop/results1.png" alt="Output of As metabolic gene abundance analysis" width="25%" height="30%" />
 <p class="caption">
 Output of As metabolic gene abundance analysis
 </p>
@@ -143,7 +143,7 @@ Output of As metabolic gene abundance analysis
 
 <div class="figure">
 
-<img src="https://github.com/XinweiSong/Asgene/blob/main/results2.png" alt="Output of As metabolic taxonomy analysis" width="25%" height="25%" />
+<img src="/Users/xinweisong/Desktop/results2.png" alt="Output of As metabolic taxonomy analysis" width="25%" height="30%" />
 <p class="caption">
 Output of As metabolic taxonomy analysis
 </p>

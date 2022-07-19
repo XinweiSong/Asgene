@@ -86,11 +86,11 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 ``` 
 ### Output
 ##### Output 1
-```{r results1, echo=FALSE, fig.cap="Output of As metabolic gene abundance analysis", out.height="10%",out.width = '20%'}
+```{r results1, echo=FALSE, fig.cap="Output of As metabolic gene abundance analysis", out.height="30%",out.width = '25%'}
 knitr::include_graphics("/Users/xinweisong/Desktop/results1.png")
 ```
 ##### Output 2
-```{r results2, echo=FALSE, fig.cap="Output of As metabolic taxonomy analysis", out.height="10%",out.width = '20%'}
+```{r results2, echo=FALSE, fig.cap="Output of As metabolic taxonomy analysis", out.height="30%",out.width = '25%'}
 knitr::include_graphics("/Users/xinweisong/Desktop/results2.png")
 ```
 
