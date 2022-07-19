@@ -97,6 +97,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         b1 <- data.frame(b)
         e <- rbind(a1, b1)
         e1 <- aggregate(e[, 3] ~ e[, 1], data = e, FUN = "max")
+        e1 <- as.data.frame(e1)
         names(e1)[1] <- "V1"
         names(e1)[2] <- "V3"
         e1 <- merge(e1, e, by = c("V1", "V3"))
@@ -140,6 +141,8 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         a2 <- a2[, c(1, 2, 3, 4)]
       }
       b <- asgene.map
+      b <- as.data.frame(b)
+      a2 <- as.data.frame(a2)
       names(a2)[4] <- "pi"
       names(b)[1] <- "pi"
       names(b)[2] <- "gene"
@@ -147,13 +150,16 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       g <- g[, -6]
       names(g)[3] <- "totalreads"
       u <- length
+      u <- as.data.frame(u)
       names(u)[1] <- "pi"
       result <- merge(g, u, by = "pi")
+      result <- as.data.frame(result)
       names(result)[6] <- "length"
       x <- result
       x <- x[order(x$gene), ]
 
       y <- dplyr::count(x, x$pi)
+      y <- as.data.frame(y)
       names(y)[1] <- "pi"
       v <- merge(x, y, by = "pi")
       v1 <- v[!duplicated(v$pi), ]
@@ -165,6 +171,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       df <- mutate(df, d = c / v1$totalreads)
       # group_by_sum
       df1 <- aggregate(df$d, by = list(df$gene), sum)
+      df1 <- as.data.frame(df1)
       names(df1) <- c("gene", as.character(i))
       system("mkdir sample_gene_abundance")
       write.table(df1, file = paste("./sample_gene_abundance/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
@@ -196,6 +203,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       } else {
         a <- read.table(file = paste("./sample_file/", i, sep = ""), sep = "\t", header = F)
       }
+      a <- as.data.frame(a)
       names(a)[1] <- "reads_id"
       names(a)[3] <- "protein_id"
       a <- a[, c(1, 3)] %>% filter(!duplicated(a[, 1]))
