@@ -13,7 +13,8 @@ Asgene(
   seqtype = "nucl",
   filetype = "fasta",
   PE = TRUE,
-  output = "./"
+  output = "./",
+  test.data = FALSE
 )
 }
 \arguments{
@@ -34,11 +35,13 @@ Asgene(
 \item{PE}{Specifies whether your metagenomic data were PE files, noting that PE files are named "_R1 with extension" or "_R2 with extension" (e.g., XINWEI_R1.fasta and XINWEI_R2.fasta); type = "logical"; default = TRUE}
 
 \item{output}{Specify the directory for the final result file; type = "character"; default = "./"}
+
+\item{test.data}{Sample datasets are provide as input and output to help users better understand this package; type = "logical"; default = FALSE}
 }
 \description{
 A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
 }
 \examples{
 library(Asgene)
-Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50", seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./")
+Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50", seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./", test.data = FALSE)
 }
