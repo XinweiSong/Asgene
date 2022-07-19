@@ -1,4 +1,4 @@
-#' AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism#' AsgeneDB: A functional gene database for metagenomic profiling of arsenic metabolism
+#' AsgeneDB: A curated orthology arsenic metabolism gene database and computational tool for metagenome annotation
 #' @description A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
 #' @param analysis Choose the target you want to analyze,abundance or taxonomy; type = "character"; default = "abundance"
 #' @param workdir Specify directory for sequence file location;type = "character"; default = "./"
@@ -90,7 +90,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
     if (PE == TRUE) {
       system("mkdir sample_merge")
       for (i in list[, 1]) {
-        info1 <- file.info(paste("./sample_file/", i, "_R1.", method, sep = ""))
+        info1 <- file.info(file = paste("./sample_file/", i, "_R1.", method, sep = ""))
         info2 <- file.info(file = paste("./sample_file/", i, "_R2.", method, sep = ""))
         if (info1$size != 0 && info2$size != 0) {
           file_R1 <- read.table(file = paste("./sample_file/", i, "_R1.", method, sep = ""), sep = "\t")
@@ -102,7 +102,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
           file_total_2 <- as.data.frame(file_total_2)
           names(file_total_2)[1] <- "V1"
           names(file_total_2)[2] <- "V3"
-          file_total_2 <- merge(file_total_2, file_total_1, by = c("V1", "V3"))
+          file_total_2 <- merge(file_total_2, file_total, by = c("V1", "V3"))
           file_total_2 <- file_total_2 %>% filter(!duplicated(V1))
           write.table(file_total_2, file = paste("sample_merge/", i, ".", method, sep = ""), sep = " ", quote = FALSE, row.names = FALSE, col.names = F)
           print(i)

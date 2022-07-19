@@ -28,14 +28,16 @@ metabolism in microbial communities in various environments.
 
 ### Database files
 
-**Database files can be downloaded from
-<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB>**
+##### 1. All database files are built into the Asgene R package. Therefore, when using Asgene R package to analyze metagenomic data, there is no need to download AsgeneDB separately.
 
-Four files are included in
-AsgeneDB.zip(<https://de.cyverse.org/data/ds/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>):
-1. **AsgeneDB.fa**: Fasta format representative sequences obtained by
-clustering curated sequences at 100% sequence identity. This file can be
-used for “BLAST” searching arsenic genes in shotgun metagenomes.
+##### 2. In order to facilitate users to use the AsgeneDB individually for personalized analysis, AsgeneDB can be downloaded from <https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>.
+
+###### **AsgeneDB.zip details: includes 4 files**
+
+1.  **AsgeneDB.fa**: Fasta format representative sequences obtained by
+    clustering curated sequences at 100% sequence identity. This file
+    can be used for “BLAST” searching arsenic genes in shotgun
+    metagenomes.
 
 2.  **asgene.map**: A mapping file that maps sequence IDs to gene names,
     only sequences belonging to arsenic gene families are included. This
@@ -64,7 +66,11 @@ used for “BLAST” searching arsenic genes in shotgun metagenomes.
 
 ## Dependent Tools
 
-1.  **R Studio**
+1.  **R Studio **
+
+-   Depends: R ≥ 3.4.0
+-   Imports: dplyr, seqinr
+
 2.  **database searching tools:**<br>
 
 -   usearch: <https://www.drive5.com/usearch/download.html>
