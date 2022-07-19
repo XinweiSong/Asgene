@@ -149,10 +149,10 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       result_g <- merge(file_2, asgene_map, by = "pi")
       result_g <- result_g[, -6]
       names(result_g)[3] <- "totalreads"
-      length_1 <- length
-      length_1 <- as.data.frame(length_1)
-      names(length_1)[1] <- "pi"
-      result <- merge(result_g, length_1, by = "pi")
+      protein_length_1 <- protein_length
+      protein_length_1 <- as.data.frame(protein_length_1)
+      names(protein_length_1)[1] <- "pi"
+      result <- merge(result_g, protein_length_1, by = "pi")
       result <- as.data.frame(result)
       names(result)[6] <- "length"
       result_x <- result
