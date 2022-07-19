@@ -121,7 +121,7 @@ Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./
 #Arsenic metabolism taxonomy analysis
 Asgene(anlysis = "taxonomy", workdir = "
 ./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta",PE = TRUE, output = "./")
-#Example datasets useing
+#Example datasets using
 Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "prot", output = "./", test.data = TRUE)
 Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "prot", output = "./", test.data = TRUE)
 ```
