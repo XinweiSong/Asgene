@@ -250,7 +250,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       system(paste(toolpath, "diamond makedb --in AsgeneDB --db ./AsgeneDB", sep = ""))
       for (i in c("testdata1","testdata2","testdata3")) {
         file_1 <- paste(workdir,"test_data/", i, sep = "")
-        out <- gsub(filetype, "diamond", i)
+        out <- paste(i,".diamond",sep = "")
         out <- paste("./sample_file/", out, sep = "")
         if (seqtype == "nucl") {
           system(paste(toolpath, "diamond blastx ", search_parameters, " -d ./AsgeneDB.dmnd -q ", file_1, " -o ", out, sep = ""))
@@ -267,7 +267,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         system("mkdir sample_file")
         for (i in  c("testdata1","testdata2","testdata3")) {
           file_1 <- paste(workdir,"test_data/", i, sep = "")
-          out <- gsub(filetype, "usearch", i)
+          out <- paste(i,".usearch",sep = "")
           out <- paste("./sample_file/", out, sep = "")
           system(paste(toolpath, "usearch -usearch_global ", file_1, " -db AsgeneDB ", search_parameters, " -blast6out ", out, sep = ""))
           print(i)
@@ -281,7 +281,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         system(toolpath, "makeblastdb -dbtype prot -input_type fasta -in AsgeneDB -out ./AsgeneDB")
         for (i in  c("testdata1","testdata2","testdata3")) {
           file_1 <- paste(workdir,"test_data/", i, sep = "")
-          out <- gsub(filetype, "blast", i)
+          out <- paste(i,".blast",sep = "")
           out <- paste("./sample_file/", out, sep = "")
           if (seqtype == "nucl") {
             system(paste(toolpath, "blastx -db ./AsgeneDB ", search_parameters, " -query ", file_1, " -out ", out, sep = ""))
