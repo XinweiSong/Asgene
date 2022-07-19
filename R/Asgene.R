@@ -91,18 +91,18 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
       info1 <- file.info(paste("./sample_file/", i, "_R1.", method, sep = ""))
       info2 <- file.info(file = paste("./sample_file/", i, "_R2.", method, sep = ""))
       if (info1$size != 0 && info2$size != 0) {
-        a <- read.table(file = paste("./sample_file/", i, "_R1.", method, sep = ""), sep = "\t")
-        a1 <- data.frame(a)
-        b <- read.table(file = paste("./sample_file/", i, "_R2.", method, sep = ""), sep = "\t")
-        b1 <- data.frame(b)
-        e <- rbind(a1, b1)
-        e1 <- aggregate(e[, 3] ~ e[, 1], data = e, FUN = "max")
-        e1 <- as.data.frame(e1)
-        names(e1)[1] <- "V1"
-        names(e1)[2] <- "V3"
-        e1 <- merge(e1, e, by = c("V1", "V3"))
-        e1 <- e1 %>% filter(!duplicated(V1))
-        write.table(e1, file = paste("sample_merge/", i, ".", method, sep = ""), sep = " ", quote = FALSE, row.names = FALSE, col.names = F)
+        file_R1 <- read.table(file = paste("./sample_file/", i, "_R1.", method, sep = ""), sep = "\t")
+        file_R1 <- data.frame(file_R1)
+        file_R2 <- read.table(file = paste("./sample_file/", i, "_R2.", method, sep = ""), sep = "\t")
+        file_R1 <- data.frame(file_R1)
+        file_total <- rbind(file_R1, file_R2)
+        file_total_2 <- aggregate(file_total[, 3] ~ file_total[, 1], data = file_total, FUN = "max")
+        file_total_2 <- as.data.frame(file_total_2)
+        names(file_total_2)[1] <- "V1"
+        names(file_total_2)[2] <- "V3"
+        file_total_2 <- merge(file_total_2, file_total_1, by = c("V1", "V3"))
+        file_total_2 <- file_total_2 %>% filter(!duplicated(V1))
+        write.table(file_total_2, file = paste("sample_merge/", i, ".", method, sep = ""), sep = " ", quote = FALSE, row.names = FALSE, col.names = F)
         print(i)
       } else {
         next
@@ -119,71 +119,71 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
     }
     for (i in file.name) {
       if (PE == TRUE) {
-        a <- read.table(file = paste("./sample_merge/", i, sep = ""), sep = " ", header = F)
+        file <- read.table(file = paste("./sample_merge/", i, sep = ""), sep = " ", header = F)
       } else {
         info <- file.info(paste("./sample_file/", i, sep = ""))
         if (info$size != 0) {
-          a <- read.table(file = paste("./sample_file/", i, sep = ""), sep = "\t", header = F)
+          file <- read.table(file = paste("./sample_file/", i, sep = ""), sep = "\t", header = F)
         } else {
           next
         }
       }
       i <- gsub(paste(".", method, sep = ""), "", i)
-      a1 <- mutate(a, v = i)
+      file_1 <- mutate(file, v = i)
       # add total reads
       list <- data.frame(list)
       names(list)[1] <- "v"
       t <- list[grep(i, list$v), ]
-      a2 <- merge(t, a1, by = "v")
+      file_2 <- merge(t, file_1, by = "v")
       if (PE == TRUE) {
-        a2 <- a2[, c(1, 2, 3, 5)]
+        file_2 <- file_2[, c(1, 2, 3, 5)]
       } else {
-        a2 <- a2[, c(1, 2, 3, 4)]
+        file_2 <- file_2[, c(1, 2, 3, 4)]
       }
-      b <- asgene.map
-      b <- as.data.frame(b)
-      a2 <- as.data.frame(a2)
-      names(a2)[4] <- "pi"
-      names(b)[1] <- "pi"
-      names(b)[2] <- "gene"
-      g <- merge(a2, b, by = "pi")
-      g <- g[, -6]
-      names(g)[3] <- "totalreads"
-      u <- length
-      u <- as.data.frame(u)
-      names(u)[1] <- "pi"
-      result <- merge(g, u, by = "pi")
+      asgene_map <- asgene.map
+      asgene_map <- as.data.frame(asgene_map)
+      file_2 <- as.data.frame(file_2)
+      names(file_2)[4] <- "pi"
+      names(asgene_map)[1] <- "pi"
+      names(asgene_map)[2] <- "gene"
+      result_g <- merge(file_2, asgene_map, by = "pi")
+      result_g <- result_g[, -6]
+      names(result_g)[3] <- "totalreads"
+      length <- length
+      length <- as.data.frame(length)
+      names(length)[1] <- "pi"
+      result <- merge(result_g, length, by = "pi")
       result <- as.data.frame(result)
       names(result)[6] <- "length"
-      x <- result
-      x <- x[order(x$gene), ]
+      result_x <- result
+      result_x <- result_x[order(result_x$gene), ]
 
-      y <- dplyr::count(x, x$pi)
-      y <- as.data.frame(y)
-      names(y)[1] <- "pi"
-      v <- merge(x, y, by = "pi")
-      v1 <- v[!duplicated(v$pi), ]
+      result_y <- dplyr::count(result_x, result_x$pi)
+      result_y <- as.data.frame(result_y)
+      names(result_y)[1] <- "pi"
+      result_v <- merge(result_x, result_y, by = "pi")
+      result_v1 <- result_v[!duplicated(result_v$pi), ]
 
       # Formula=SUM protein{[mapped reads/(total reads*protein length*3)]*10^9}
-      v1$totalreads <- as.numeric(v1$totalreads)
-      df <- data.frame(v1)
-      df <- mutate(df, c = v1$n * 10^9 / (v1$length * 3))
-      df <- mutate(df, d = c / v1$totalreads)
+      result_v1$totalreads <- as.numeric(result_v1$totalreads)
+      result_df <- data.frame(result_v1)
+      result_df <- mutate(result_df, c = result_v1$n * 10^9 / (result_v1$length * 3))
+      result_df <- mutate(result_df, d = c / result_v1$totalreads)
       # group_by_sum
-      df1 <- aggregate(df$d, by = list(df$gene), sum)
-      df1 <- as.data.frame(df1)
-      names(df1) <- c("gene", as.character(i))
+      result_df1 <- aggregate(result_df$d, by = list(result_df$gene), sum)
+      result_df1 <- as.data.frame(result_df1)
+      names(result_df1) <- c("gene", as.character(i))
       system("mkdir sample_gene_abundance")
-      write.table(df1, file = paste("./sample_gene_abundance/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
+      write.table(result_df1, file = paste("./sample_gene_abundance/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
       print(i)
     }
 
-    a <- list.files(path = "./sample_gene_abundance/", pattern = ".csv")
-    n <- length(a)
-    merge.data <- read.csv(file = paste("./sample_gene_abundance/", a[1], sep = ""), header = T, sep = ",")
+    abundance_csv <- list.files(path = "./sample_gene_abundance/", pattern = ".csv")
+    n <- length(abundance_csv)
+    merge.data <- read.csv(file = paste("./sample_gene_abundance/", abundance_csv[1], sep = ""), header = T, sep = ",")
     merge.data1 <- data.frame(merge.data)
     for (i in 2:n) {
-      new.data <- read.csv(file = paste("./sample_gene_abundance/", a[i], sep = ""), sep = ",", header = T)
+      new.data <- read.csv(file = paste("./sample_gene_abundance/", abundance_csv[i], sep = ""), sep = ",", header = T)
       merge.data1 <- merge(merge.data1, new.data, by = "gene", all = T)
     }
     write.csv(merge.data1, file = paste(output, "sample_abundance.csv", sep = ""), row.names = F)
