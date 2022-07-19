@@ -28,9 +28,11 @@ metabolism in microbial communities in various environments.
 
 ### Database files
 
-##### 1. All database files are built into the Asgene R package. Therefore, when using Asgene R package to analyze metagenomic data, there is no need to download AsgeneDB separately.
+##### 1. The database files user needs are built into the R package (Asgene). Therefore, when using Asgene R package to analyze metagenomic data, there is no need to download AsgeneDB separately.
 
-##### 2. In order to facilitate users to use the AsgeneDB individually for personalized analysis, AsgeneDB can be downloaded from <https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>.
+##### 2. Example datasets are provided as input and output to help users better understand this package. The example datasets consists of three protein sequence files, stored as testdata1.rda, testdata2.rda, testdata3.rda.
+
+##### 3. In order to facilitate users to use the AsgeneDB individually for personalized analysis, AsgeneDB can be downloaded from <https://data.cyverse.org/dav-anon/iplant/home/xinwei/AsgeneDB/AsgeneDB.zip>.
 
 ###### **AsgeneDB.zip details: includes 4 files**
 
@@ -95,17 +97,18 @@ devtools::install_github("XinweiSong/Asgene")
 
 **Description**:<br> we provide Asgene Package for metagenomic alignment
 (nucleic acid or protein sequence), subsequent gene family abundance
-statistics and sample abundance standardization. Users only need to
-choose a database search tool according to their needs (e.g., USEARCH,
-BLAST and DIAMOND) and input three parameters (e.g., working path,
-search parameters of tool and filetype) to automatically analyze
-statistics and output statistical results. Users can select gene
-abundance statistics (Option: abundance) to normalize read counts per
-kilobase per million reads (RPKM) to eliminate differences in sequencing
-depth and reference sequence length between samples. In addition, if the
-user selects functional species statistics (Option: taxonomy), the
-driveing species of each arsenic metabolism gene at different
-classification levels in the sample can be generated automatically.
+statistics and sample abundance standardization. The database files user
+needs are built into the Asgene. Therefore, users only need to choose a
+database search tool according to their needs (e.g., USEARCH, BLAST and
+DIAMOND) and input three parameters (e.g., working path, search
+parameters of tool and filetype) to automatically analyze statistics and
+output statistical results. Users can select gene abundance statistics
+(Option: abundance) to normalize read counts per kilobase per million
+reads (RPKM) to eliminate differences in sequencing depth and reference
+sequence length between samples. In addition, if the user selects
+functional species statistics (Option: taxonomy), the driveing species
+of each arsenic metabolism gene at different classification levels in
+the sample can be generated automatically.
 
 ### Example
 
@@ -113,6 +116,7 @@ This is a basic example which shows you how to use the package:
 
 ``` r
 library(Asgene)
+#
 #Arsenic metabolism gene abundance analysis
 Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "nucl", filetype = "fasta", PE = TRUE , output = "./")
 #Arsenic metabolism taxonomy analysis
@@ -125,7 +129,7 @@ Asgene(anlysis = "taxonomy", workdir = "./", method = "diamond", toolpath = "./"
 
 <div class="figure">
 
-<img src="/Users/xinweisong/Desktop/results1.png" alt="Output of As metabolic gene abundance analysis" width="50%" />
+<img src="/Users/xinweisong/Desktop/results1.png" alt="Output of As metabolic gene abundance analysis" width="20%" height="10%" />
 <p class="caption">
 Output of As metabolic gene abundance analysis
 </p>
