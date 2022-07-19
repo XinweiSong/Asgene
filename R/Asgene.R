@@ -229,11 +229,6 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
   }
 
   if(test.data==TRUE){
-    setwd("./")
-    system("mkdir test_data")
-    write.fasta(sequences = testdata1, names =names(testdata1), file.out = './test_data/testdata1')
-    write.fasta(sequences = testdata2, names =names(testdata2), file.out = './test_data/testdata2')
-    write.fasta(sequences = testdata3, names =names(testdata3), file.out = './test_data/testdata3')
     # Install dependent packages
     if (!requireNamespace("dplyr", quietly = TRUE)) {
       install.packages("dplyr")
@@ -243,6 +238,11 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
     }
     library(dplyr)
     library(seqinr)
+    setwd("./")
+    system("mkdir test_data")
+    write.fasta(sequences = testdata1, names =names(testdata1), file.out = './test_data/testdata1')
+    write.fasta(sequences = testdata2, names =names(testdata2), file.out = './test_data/testdata2')
+    write.fasta(sequences = testdata3, names =names(testdata3), file.out = './test_data/testdata3')
     # Call comparison tool
     if (method == "diamond") {
       system("mkdir sample_file")
