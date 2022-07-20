@@ -207,9 +207,16 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
           a <- read.table(file = paste("./sample_file/", i, sep = ""), sep = "\t", header = F)
         }
         a <- as.data.frame(a)
+        if (PE == TRUE) {
         names(a)[1] <- "reads_id"
         names(a)[3] <- "protein_id"
         a <- a[, c(1, 3)] %>% filter(!duplicated(a[, 1]))
+        }
+        else {
+          names(a)[1] <- "reads_id"
+          names(a)[2] <- "protein_id"
+          a <- a[, c(1, 2)] %>% filter(!duplicated(a[, 1]))
+        }
         i <- gsub(".diamond", "", i)
         a1 <- mutate(a, "sample" = i)
         sample_gene_tax_pathway <- merge(a1, id_gene_tax_pathway, by = "protein_id")
@@ -375,8 +382,8 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         a <- read.table(file = paste("./sample_file/", i, sep = ""), sep = "\t", header = F)
         a <- as.data.frame(a)
         names(a)[1] <- "reads_id"
-        names(a)[3] <- "protein_id"
-        a <- a[, c(1, 3)] %>% filter(!duplicated(a[, 1]))
+        names(a)[2] <- "protein_id"
+        a <- a[, c(1, 2)] %>% filter(!duplicated(a[, 1]))
         i <- gsub(".diamond", "", i)
         a1 <- mutate(a, "sample" = i)
         sample_gene_tax_pathway <- merge(a1, id_gene_tax_pathway, by = "protein_id")
