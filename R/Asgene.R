@@ -46,6 +46,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         if (seqtype == "prot") {
           system(paste(toolpath, "diamond blastp ", search_parameters, " -d ./AsgeneDB.dmnd -q ", file_1, " -o ", out, sep = ""))
         }
+        print(paste("Comparison of ",i," successful!!",sep = ""))
       }
     }
     else if (method == "usearch") {
@@ -59,7 +60,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
           out <- gsub(filetype, "usearch", i)
           out <- paste("./sample_file/", out, sep = "")
           system(paste(toolpath, "usearch -usearch_global ", file_1, " -db AsgeneDB ", search_parameters, " -blast6out ", out, sep = ""))
-          print(i)
+          print(paste("Comparison of ",i," successful!!",sep = ""))
         }
       }
     } else if (method == "blast") {
@@ -79,7 +80,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
           if (seqtype == "prot") {
             system(paste(toolpath, "blastp -db ./AsgeneDB ", search_parameters, " -query ", file_1, " -out ", out, sep = ""))
           }
-          print(i)
+          print(paste("Comparison of ",i," successful!!",sep = ""))
         }
       }
     } else {
@@ -178,9 +179,9 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         names(result_df1) <- c("gene", as.character(i))
         system("mkdir sample_gene_abundance")
         write.table(result_df1, file = paste("./sample_gene_abundance/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
-        print(i)
+        print(paste("sample","(",i,") ","of arsenic metabolic genes abundance analysis successful!!",sep = ""))
       }
-
+      print("All samples of arsenic metabolic genes abundance analysis successful!!")
       abundance_csv <- list.files(path = "./sample_gene_abundance/", pattern = ".csv")
       n <- length(abundance_csv)
       merge.data <- read.csv(file = paste("./sample_gene_abundance/", abundance_csv[1], sep = ""), header = T, sep = ",")
@@ -190,6 +191,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         merge.data1 <- merge(merge.data1, new.data, by = "gene", all = T)
       }
       write.csv(merge.data1, file = paste(output, "sample_abundance.csv", sep = ""), row.names = F)
+      print("All samples of arsenic metabolic genes abundance statistics successful!!")
     }
 
     # count functional gene drive species of all samples
@@ -232,7 +234,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         merge.data1 <- merge(merge.data1, new.data, all = T)
       }
       write.csv(merge.data1, file = paste(output, "sample_gene_tax_pathway.csv", sep = ""), row.names = F)
-      print(n)
+      print("All samples of arsenic metabolic species statistics successful!!")
     }
   }
 
@@ -266,6 +268,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         if (seqtype == "prot") {
           system(paste(toolpath, "diamond blastp ", search_parameters, " -d ./AsgeneDB.dmnd -q ", file_1, " -o ", out, sep = ""))
         }
+        print(paste("Comparison of ",i," successful!!",sep = ""))
       }
     }
     else if (method == "usearch") {
@@ -278,7 +281,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
           out <- paste(i,".usearch",sep = "")
           out <- paste("./sample_file/", out, sep = "")
           system(paste(toolpath, "usearch -usearch_global ", file_1, " -db AsgeneDB ", search_parameters, " -blast6out ", out, sep = ""))
-          print(i)
+          print(paste("Comparison of ",i," successful!!",sep = ""))
         }
       }
     } else if (method == "blast") {
@@ -297,7 +300,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
           if (seqtype == "prot") {
             system(paste(toolpath, "blastp -db ./AsgeneDB ", search_parameters, " -query ", file_1, " -out ", out, sep = ""))
           }
-          print(i)
+          print(paste("Comparison of ",i," successful!!",sep = ""))
         }
       }
     } else {
@@ -360,9 +363,9 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         names(result_df1) <- c("gene", as.character(i))
         system("mkdir sample_gene_abundance")
         write.table(result_df1, file = paste("./sample_gene_abundance/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
-        print(i)
+        print(paste("sample","(",i,") ","of arsenic metabolic genes abundance analysis successful!!",sep = ""))
       }
-
+      print("All samples of arsenic metabolic genes abundance analysis successful!!")
       abundance_csv <- list.files(path = "./sample_gene_abundance/", pattern = ".csv")
       n <- length(abundance_csv)
       merge.data <- read.csv(file = paste("./sample_gene_abundance/", abundance_csv[1], sep = ""), header = T, sep = ",")
@@ -372,6 +375,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         merge.data1 <- merge(merge.data1, new.data, by = "gene", all = T)
       }
       write.csv(merge.data1, file = paste(output, "sample_abundance.csv", sep = ""), row.names = F)
+      print("All samples of arsenic metabolic genes abundance statistics successful!!")
     }
 
     # count functional gene drive species of all samples
@@ -388,7 +392,8 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         a1 <- mutate(a, "sample" = i)
         sample_gene_tax_pathway <- merge(a1, id_gene_tax_pathway, by = "protein_id")
         write.table(sample_gene_tax_pathway, file = paste("./sample_gene_tax/", i, ".csv", sep = ""), sep = ",", quote = FALSE, row.names = FALSE)
-      }
+        print(paste("sample","(",i,") ","of arsenic metabolic species analysis successful!!",sep = ""))
+        }
 
       a <- list.files(path = "./sample_gene_tax/", pattern = ".csv")
       n <- length(a)
@@ -399,7 +404,7 @@ Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", t
         merge.data1 <- merge(merge.data1, new.data, all = T)
       }
       write.csv(merge.data1, file = paste(output, "sample_gene_tax_pathway.csv", sep = ""), row.names = F)
-      print(n)
+      print("All samples of arsenic metabolic species statistics successful!!")
     }
   }
 }
