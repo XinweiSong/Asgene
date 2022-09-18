@@ -11,7 +11,7 @@
 #' @param output Specify the directory for the final result file; type = "character"; default = "./"
 #' @param test.data Example datasets are provided as input and output to help users better understand this package; type = "logical"; default = FALSE
 #'
-#' @return
+#' @return merge.data1
 #' @export
 #'
 #' @examples

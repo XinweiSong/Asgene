@@ -38,6 +38,9 @@ Asgene(
 
 \item{test.data}{Example datasets are provided as input and output to help users better understand this package; type = "logical"; default = FALSE}
 }
+\value{
+merge.data1
+}
 \description{
 A manually curated arsenic functional gene database (AsgeneDB) and R package (Asgene package) are developed for rapid and accurate metagenomic analysis.
 }
