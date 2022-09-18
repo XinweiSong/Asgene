@@ -16,8 +16,8 @@
 #'
 #' @examples
 #' library(Asgene)
-#' Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50", seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./", test.data = FALSE)
-#' Asgene(anlysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "prot", output = "./", test.data = TRUE)
+#' Asgene(analysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50", seqtype = "nucl", filetype = "fasta", PE = TRUE, out = "./", test.data = FALSE)
+#' Asgene(analysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50",seqtype = "prot", output = "./", test.data = TRUE)
 Asgene <- function(analysis = "abundance", workdir = "./", method = "diamond", toolpath = "./", search_parameters = "-e 1e-4 -p 28 --query-cover 80 --id 50", seqtype = "nucl", filetype = "fasta", PE = TRUE, output = "./", test.data = FALSE) {
   if (test.data == FALSE){
     setwd("./")
